@@ -6,7 +6,8 @@ contract OwNifty is Context, ERC721Burnable
 { mapping (address => address) owners; constructor() 
 public ERC721("OwNifty", "OwNFT") { } 
 /** 
-* @dev Saves current contract owner to owners array */ function setOwnership(address _scAddr) public { Ownable _sc = Ownable(_scAddr); owners[_scAddr] = _sc.owner(); } /** 
+* @dev Saves current contract owner to owners array */ 
+function setOwnership(address _scAddr) public { Ownable _sc = Ownable(_scAddr); owners[_scAddr] = _sc.owner(); } /** 
 * @dev Creates NFT based no smart contract setOwnership * Note. setOwnership should be called and contract owner should be this contract 
 */ function mintOwNifty(address _scAddr) public { Ownable _sc = Ownable(_scAddr); require(_sc.owner() == address(this)); 
 require(owners[_scAddr] == msg.sender); super._mint(msg.sender, uint(_scAddr)); } /**
